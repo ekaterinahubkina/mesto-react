@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -45,23 +44,23 @@ function App() {
         onAddPlace={handleAddPlaceClick}
         onCardClick={handleCardClick} />
       <Footer />
-      <PopupWithForm title={'Редактировать профиль'} name={'edit'} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
-        <input className="form__input form__input_edit form__input_type_name" type="text" name="name" id="name-input" required minlength="2" maxlength="40" />
+      <PopupWithForm title={'Редактировать профиль'} name={'edit'} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} buttonText={'Сохранить'}>
+        <input className="form__input form__input_edit form__input_type_name" type="text" name="name" id="name-input" required minLength="2" maxLength="40" />
         <span className="form__error form__error_type_edit name-input-error"></span>
-        <input className="form__input form__input_edit form__input_type_occupation" type="text" name="occupation" id="occupation-input" required minlength="2" maxlength="200" />
+        <input className="form__input form__input_edit form__input_type_occupation" type="text" name="occupation" id="occupation-input" required minLength="2" maxLength="200" />
         <span className="form__error form__error_type_edit occupation-input-error"></span>
       </PopupWithForm>
-      <PopupWithForm title={'Обновить автар'} name={'avatar'} isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
+      <PopupWithForm title={'Обновить автар'} name={'avatar'} isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} buttonText={'Сохранить'}>
         <input className="form__input form__input_add form__input_type_link" type="url" placeholder="Ссылка на аватар" name="link" id="avatar-link-input" required/>
         <span className="form__error form__error_type_avatar avatar-link-input-error"></span>
       </PopupWithForm>
-      <PopupWithForm title={'Новое место'} name={'add'} isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
-        <input className="form__input form__input_add form__input_type_title" type="text" placeholder="Название" name="name" id="title-input" required minlength="2" maxlength="30"/>
+      <PopupWithForm title={'Новое место'} name={'add'} isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} buttonText={'Сохранить'}>
+        <input className="form__input form__input_add form__input_type_title" type="text" placeholder="Название" name="name" id="title-input" required minLength="2" maxLength="30"/>
         <span className="form__error form__error_type_add title-input-error"></span>
         <input className="form__input form__input_add form__input_type_link" type="url" placeholder="Ссылка на картинку" name="link" id="link-input" required/>
         <span className="form__error form__error_type_add link-input-error"></span>
       </PopupWithForm>
-      <PopupWithForm title={'Вы уверены?'} name={'confirm'}>
+      <PopupWithForm title={'Вы уверены?'} name={'confirm'} buttonText={'Да'}>
       </PopupWithForm>
       <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
     </div>
