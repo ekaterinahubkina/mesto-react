@@ -28,6 +28,7 @@
 @import url(./blocks/card/__likes-number/card__likes-number.css);
 @import url(./blocks/card/__likes-wrapper/card__likes-wrapper.css);
 @import url(./blocks/card/__delete-button/card__delete-button.css);
+@import url(./blocks/card/__delete-button/card__delete-button_hidden.css);
 
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/footer/__copyright/footer__copyright.css);
