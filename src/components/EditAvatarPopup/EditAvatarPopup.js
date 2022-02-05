@@ -18,8 +18,8 @@ function EditAvatarPopup ({ isOpen, onClose, onUpateAvatar, isLoading }) {
   }
 
     return (
-        <PopupWithForm title={'Обновить автар'} name={'avatar'} isOpen={isOpen} onClose={onClose} 
-        buttonText={'Сохранить'} onSubmit={handleSubmit} isLoading={isLoading}>
+        <PopupWithForm title='Обновить автар' name='avatar' isOpen={isOpen} onClose={onClose} 
+        buttonText='Сохранить' onSubmit={handleSubmit} isLoading={isLoading}>
         <input ref={inputRef} className="form__input form__input_add form__input_type_link" type="url" 
         placeholder="Ссылка на аватар" name="link" id="avatar-link-input" required/>
         <span className="form__error form__error_type_avatar avatar-link-input-error"></span>

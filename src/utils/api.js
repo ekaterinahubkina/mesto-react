@@ -73,28 +73,40 @@ class Api{
             .then(this._getResponseData);
     }
 
-    putLike(data) {
+    changeLikeCardStatus(data, isLiked) {
+        const method = isLiked ? 'DELETE' : 'PUT';
         return fetch(`${this.url}/cards/${data._id}/likes`, {
-            method: 'PUT',
+            method,
             headers: {
                 authorization: this.token,
                 'Content-Type': 'application/json'
             }
         })
-            .then(this._getResponseData);
-
+            .then(this._getResponseData); 
     }
 
-    deleteLike(data) {
-        return fetch(`${this.url}/cards/${data._id}/likes`, {
-            method: 'DELETE',
-            headers: {
-                authorization: this.token,
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(this._getResponseData);
-    }
+    // putLike(data) {
+    //     return fetch(`${this.url}/cards/${data._id}/likes`, {
+    //         method: 'PUT',
+    //         headers: {
+    //             authorization: this.token,
+    //             'Content-Type': 'application/json'
+    //         }
+    //     })
+    //         .then(this._getResponseData);
+
+    // }
+
+    // deleteLike(data) {
+    //     return fetch(`${this.url}/cards/${data._id}/likes`, {
+    //         method: 'DELETE',
+    //         headers: {
+    //             authorization: this.token,
+    //             'Content-Type': 'application/json'
+    //         }
+    //     })
+    //         .then(this._getResponseData);
+    // }
 
     editUserAvatar(data) {
         return fetch(`${this.url}/users/me/avatar`, {
