@@ -20,6 +20,7 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState({});
 
   const [currentUser, setCurrentUser] = React.useState({});
+  const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
     api.getUserData()
@@ -84,28 +85,20 @@ function App() {
   function handleCardLike(card) {
     const isLiked = card.likes.some(like => like._id === currentUser._id);
 
-    (!isLiked) ?
-    api.putLike(card)
-        .then((newCard) => {
-            setCards((state) => state.map((c) => c._id === card._id ? newCard : c))
-    }) :
-    api.deleteLike(card)
-        .then((newCard) => {
-            setCards((state) => state.map((c) => c._id === card._id ? newCard : c))
-    })
+    api.changeLikeCardStatus(card, isLiked)
+      .then((newCard) => {
+        setCards((state) => state.map((c) => c._id === card._id ? newCard : c))
+    }) 
     }
 
     function handleCardDelete(card) {
-        const isOwn = card.owner._id === currentUser._id;
 
-        isOwn && api.deleteMyCard(card)
+        api.deleteMyCard(card)
             .then((res) => {
                 console.log(res);
                 setCards((state) => state.filter((c) => c._id !== card._id))
             })
     }
-
-    const [cards, setCards] = React.useState([]);
 
     React.useEffect(() => {
         api.getCards()
