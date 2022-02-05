@@ -1,4 +1,3 @@
-import api from '../../utils/api';
 import React from 'react';
 import Card from '../Card/Card';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -6,44 +5,6 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 function Main (props) {
 
     const currentUser = React.useContext(CurrentUserContext);
-
-    function handleCardLike(card) {
-        const isLiked = card.likes.some(like => like._id === currentUser._id);
-
-        (!isLiked) ?
-        api.putLike(card)
-            .then((newCard) => {
-                setCards((state) => state.map((c) => c._id === card._id ? newCard : c))
-        }) :
-        api.deleteLike(card)
-            .then((newCard) => {
-                setCards((state) => state.map((c) => c._id === card._id ? newCard : c))
-        })
-    }
-
-    function handleCardDelete(card) {
-        const isOwn = card.owner._id === currentUser._id;
-
-        isOwn && api.deleteMyCard(card)
-            .then((res) => {
-                console.log(res);
-                setCards((state) => state.filter((c) => c._id !== card._id))
-            })
-    }
-
-    const [cards, setCards] = React.useState([]);
-
-    React.useEffect(() => {
-        api.getCards()
-            .then(res => {
-                console.log(res);
-                setCards(res);
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }, [])
-
 
     return (
         <main className="content">
@@ -62,9 +23,9 @@ function Main (props) {
                 <button className="profile__add-button" type="button" aria-label="Добавить" onClick={props.onAddPlace}></button>
             </section>
             <section className="cards" aria-label="Карточки мест">
-                {cards.map((item) => {
+                {props.cards.map((item) => {
                     return (
-                        <Card card={item} {...item} key={item._id} onCardClick={props.onCardClick} onCardLike={handleCardLike} onCardDelete={handleCardDelete}/>                
+                        <Card card={item} {...item} key={item._id} onCardClick={props.onCardClick} onCardLike={props.onCardLike} onCardDelete={props.onCardDelete}/>                
                     )
                 }
                 )}

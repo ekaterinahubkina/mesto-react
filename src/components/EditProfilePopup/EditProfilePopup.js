@@ -2,7 +2,7 @@ import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import React from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function EditProfilePopup ({ isOpen, onClose, onUpdateUser }) {
+function EditProfilePopup ({ isOpen, onClose, onUpdateUser, isLoading }) {
     const currentUser = React.useContext(CurrentUserContext);
     const [name, setName] = React.useState('');
     const [description, setDescription] = React.useState('');
@@ -10,7 +10,7 @@ function EditProfilePopup ({ isOpen, onClose, onUpdateUser }) {
     React.useEffect(() => {
         setName(currentUser.name);
         setDescription(currentUser.about);
-    }, [currentUser])
+    }, [currentUser, isOpen])
 
     function handleNameChange (event) {
         setName(event.target.value);
@@ -32,7 +32,8 @@ function EditProfilePopup ({ isOpen, onClose, onUpdateUser }) {
 
     return (
 
-    <PopupWithForm title={'Редактировать профиль'} name={'edit'} isOpen={isOpen} onClose={onClose} buttonText={'Сохранить'} onSubmit={handleSubmit}>
+    <PopupWithForm title={'Редактировать профиль'} name={'edit'} isOpen={isOpen} onClose={onClose} buttonText={'Сохранить'} 
+    onSubmit={handleSubmit} isLoading={isLoading}>
         <input className="form__input form__input_edit form__input_type_name" onChange={handleNameChange} type="text" name="name" id="name-input" required minLength="2" maxLength="40" value={name || ''}/>
         <span className="form__error form__error_type_edit name-input-error"></span>
         <input className="form__input form__input_edit form__input_type_occupation" onChange={handleDescriptionChange} type="text" name="occupation" id="occupation-input" required minLength="2" maxLength="200" value={description || ''}/>
