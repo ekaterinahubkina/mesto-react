@@ -18,6 +18,7 @@
 * запрос на сервер (fetch)
 
 ### Результат:
+https://ekaterinahubkina.github.io/mesto-react/
 
 
 # Getting Started with Create React App
